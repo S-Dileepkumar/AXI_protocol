@@ -9,10 +9,10 @@ class master_driver extends uvm_driver#(axi_trans);
 	int mem[int];
 
 	axi_trans q1[$],q2[$],q3[$],q4[$],q5[$];
-    	semaphore wac  = new(1);
-	semaphore wdc  = new(1);
-	semaphore wrc  = new(1);
-	semaphore wadc = new();
+	semaphore wac  = new(1);  //write address sema
+	semaphore wdc  = new(1);// write data sema
+	semaphore wrc  = new(1); // write resp sema
+	semaphore wadc = new();	 // wadc is to hold the wdc sema from utilizing . only unlocks when wac releases
 	semaphore wdrc = new();
 	semaphore rac  = new(1);
 	semaphore rdc  = new(1);
@@ -85,14 +85,14 @@ task master_driver::to_ip(axi_trans xtn);
 	fork
 		begin:write_address
 			wac.get(1);
-			wac_to_slv(q1.pop_front());
+			wac_to_slv(q1.pop_front()); // wac_to_slv is the methods writing the address to the slave
 			wac.put(1);
-			wadc.put(1);
+			wadc.put(1);	// key release .
 			
 		end
-		
+		// starts only after the wac
 		begin:write_data
-			wadc.get(1);
+			wadc.get(1);	// key use.
 			wdc.get(1);
 			wdc_to_slv(q2.pop_front());
 			wdc.put(1);
