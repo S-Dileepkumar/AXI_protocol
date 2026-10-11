@@ -1,0 +1,82 @@
+%Error-PKGNODECL: /home/runner/work/_temp/uvm/src/base/uvm_coreservice.svh:379:42: Package/class 'type_id' not found, and needs to be predeclared (IEEE 1800-2017 26.3)
+  379 |             m_hopper = uvm_phase_hopper::type_id::create("default_hopper");
+      |                                          ^~~~~~~
+                  /home/runner/work/_temp/uvm/src/base/uvm_base.svh:54:1: ... note: In file included from 'uvm_base.svh'
+                  /home/runner/work/_temp/uvm/src/uvm_pkg.sv:58:1: ... note: In file included from 'uvm_pkg.sv'
+                  ... For error description see https://verilator.org/warn/PKGNODECL?v=5.020
+%Error-UNSUPPORTED: ../AXI_TB/../AXI_IF/axi_if.sv:135:18: Unsupported: Modport clocking
+  135 | modport M_DRV_MP(clocking m_drv_cb);
+      |                  ^~~~~~~~
+%Error-UNSUPPORTED: ../AXI_TB/../AXI_IF/axi_if.sv:136:18: Unsupported: Modport clocking
+  136 | modport M_MON_MP(clocking m_mon_cb);
+      |                  ^~~~~~~~
+%Error-UNSUPPORTED: ../AXI_TB/../AXI_IF/axi_if.sv:137:18: Unsupported: Modport clocking
+  137 | modport S_DRV_MP(clocking s_drv_cb);
+      |                  ^~~~~~~~
+%Error-UNSUPPORTED: ../AXI_TB/../AXI_IF/axi_if.sv:138:18: Unsupported: Modport clocking
+  138 | modport S_MON_MP(clocking s_mon_cb);
+      |                  ^~~~~~~~
+%Error-UNSUPPORTED: ../AXI_TB/../AXI_IF/axi_if.sv:141:142: Unsupported: [-> boolean abbrev expression
+  141 |         @(posedge clk) $rose(AWVALID) |-> $stable(AWID) && $stable (AWLEN) && $stable (AWBURST) && $stable (AWSIZE) && (AWADDR) until AWREADY[->1];
+      |                                                                                                                                              ^~~
+%Error-UNSUPPORTED: ../AXI_TB/../AXI_IF/axi_if.sv:141:145: Unsupported: boolean abbrev (in sequence expression)
+  141 |         @(posedge clk) $rose(AWVALID) |-> $stable(AWID) && $stable (AWLEN) && $stable (AWBURST) && $stable (AWSIZE) && (AWADDR) until AWREADY[->1];
+      |                                                                                                                                                 ^
+%Error-UNSUPPORTED: ../AXI_TB/../AXI_IF/axi_if.sv:141:129: Unsupported: until (in property expression)
+  141 |         @(posedge clk) $rose(AWVALID) |-> $stable(AWID) && $stable (AWLEN) && $stable (AWBURST) && $stable (AWSIZE) && (AWADDR) until AWREADY[->1];
+      |                                                                                                                                 ^~~~~
+%Error-UNSUPPORTED: ../AXI_TB/../AXI_IF/axi_if.sv:145:121: Unsupported: [-> boolean abbrev expression
+  145 |        @(posedge clk) $rose(WVALID) |-> $stable(WID) && $stable(WDATA) && $stable (WSTRB) && $stable(WLAST) until WREADY[->1];
+      |                                                                                                                         ^~~
+%Error-UNSUPPORTED: ../AXI_TB/../AXI_IF/axi_if.sv:145:124: Unsupported: boolean abbrev (in sequence expression)
+  145 |        @(posedge clk) $rose(WVALID) |-> $stable(WID) && $stable(WDATA) && $stable (WSTRB) && $stable(WLAST) until WREADY[->1];
+      |                                                                                                                            ^
+%Error-UNSUPPORTED: ../AXI_TB/../AXI_IF/axi_if.sv:145:109: Unsupported: until (in property expression)
+  145 |        @(posedge clk) $rose(WVALID) |-> $stable(WID) && $stable(WDATA) && $stable (WSTRB) && $stable(WLAST) until WREADY[->1];
+      |                                                                                                             ^~~~~
+%Error-UNSUPPORTED: ../AXI_TB/../AXI_IF/axi_if.sv:150:139: Unsupported: [-> boolean abbrev expression
+  150 |      @(posedge clk) $rose(ARVALID) |-> $stable(ARID) && $stable (ARLEN) && $stable (ARBURST) && $stable (ARSIZE) && (ARADDR) until ARREADY[->1];
+      |                                                                                                                                           ^~~
+%Error-UNSUPPORTED: ../AXI_TB/../AXI_IF/axi_if.sv:150:142: Unsupported: boolean abbrev (in sequence expression)
+  150 |      @(posedge clk) $rose(ARVALID) |-> $stable(ARID) && $stable (ARLEN) && $stable (ARBURST) && $stable (ARSIZE) && (ARADDR) until ARREADY[->1];
+      |                                                                                                                                              ^
+%Error-UNSUPPORTED: ../AXI_TB/../AXI_IF/axi_if.sv:150:126: Unsupported: until (in property expression)
+  150 |      @(posedge clk) $rose(ARVALID) |-> $stable(ARID) && $stable (ARLEN) && $stable (ARBURST) && $stable (ARSIZE) && (ARADDR) until ARREADY[->1];
+      |                                                                                                                              ^~~~~
+%Error-UNSUPPORTED: ../AXI_TB/../AXI_IF/axi_if.sv:163:84: Unsupported: [-> boolean abbrev expression
+  163 |       @(posedge clk) $rose(BVALID) |-> $stable(BID) && $stable (BRESP) until BREADY[->1];
+      |                                                                                    ^~~
+%Error-UNSUPPORTED: ../AXI_TB/../AXI_IF/axi_if.sv:163:87: Unsupported: boolean abbrev (in sequence expression)
+  163 |       @(posedge clk) $rose(BVALID) |-> $stable(BID) && $stable (BRESP) until BREADY[->1];
+      |                                                                                       ^
+%Error-UNSUPPORTED: ../AXI_TB/../AXI_IF/axi_if.sv:163:72: Unsupported: until (in property expression)
+  163 |       @(posedge clk) $rose(BVALID) |-> $stable(BID) && $stable (BRESP) until BREADY[->1];
+      |                                                                        ^~~~~
+%Error-UNSUPPORTED: ../AXI_TB/../AXI_IF/axi_if.sv:168:114: Unsupported: [-> boolean abbrev expression
+  168 |      @(posedge clk) $rose(RVALID) |-> $stable(RID) && $stable (RDATA) && $stable (RLAST)  && (RRESP) until RREADY[->1];
+      |                                                                                                                  ^~~
+%Error-UNSUPPORTED: ../AXI_TB/../AXI_IF/axi_if.sv:168:117: Unsupported: boolean abbrev (in sequence expression)
+  168 |      @(posedge clk) $rose(RVALID) |-> $stable(RID) && $stable (RDATA) && $stable (RLAST)  && (RRESP) until RREADY[->1];
+      |                                                                                                                     ^
+%Error-UNSUPPORTED: ../AXI_TB/../AXI_IF/axi_if.sv:168:102: Unsupported: until (in property expression)
+  168 |      @(posedge clk) $rose(RVALID) |-> $stable(RID) && $stable (RDATA) && $stable (RLAST)  && (RRESP) until RREADY[->1];
+      |                                                                                                      ^~~~~
+%Error: ../AXI_TB/../AXI_MASTER/axi_master_agent.sv:3:35: syntax error, unexpected '#', expecting '.' or ';'
+    3 |    typedef uvm_component_registry #(axi_master_agent,"axi_master_agent") type_id; 
+      |                                   ^
+%Error: ../AXI_TB/../AXI_MASTER/axi_master_agent.sv:3:28: syntax error, unexpected IDENTIFIER, expecting '(' or ';'
+    3 |    static function type_id get_type(); 
+      |                            ^~~~~~~~
+%Error: ../AXI_TB/../AXI_MASTER/axi_master_agent.sv:11:73: syntax error, unexpected IDENTIFIER, expecting ')'
+   11 |     extern function new(string name = "axi_master_agent", uvm_component parent);
+      |                                                                         ^~~~~~
+%Error: ../AXI_TB/../AXI_MASTER/axi_master_agent.sv:12:48: syntax error, unexpected IDENTIFIER, expecting ')'
+   12 |     extern function void build_phase(uvm_phase phase);
+      |                                                ^~~~~
+%Error: ../AXI_TB/../AXI_MASTER/axi_master_agent.sv:13:50: syntax error, unexpected IDENTIFIER, expecting ')'
+   13 |     extern function void connect_phase(uvm_phase phase);
+      |                                                  ^~~~~
+%Error: Internal Error: ../AXI_TB/../AXI_MASTER/axi_master_agent.sv:1:1: ../V3ParseSym.h:124: Symbols suggest ending TASK 'connect_phase' but parser thinks ending CLASS 'axi_master_agent'
+    1 | class axi_master_agent extends uvm_agent;
+      | ^~~~~
+                        ... See the manual at https://verilator.org/verilator_doc.html for more assistance.
