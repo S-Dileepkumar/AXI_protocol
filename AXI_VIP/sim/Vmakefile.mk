@@ -88,9 +88,9 @@ lint: check
 	@echo "Lint completed. See $(LOGS)/lint.log"
 
 build: check
-	@echo "Building AXI VIP..."
 	@set -o pipefail; \
-	  $(VERILATOR) $(VFLAGS) $(SRCS) \
+	  $(VERILATOR) $(VFLAGS) \
+	  $(UVM_PKG) $(SRCS) \
 	  2>&1 | tee $(LOGS)/build.log
 
 run: build
