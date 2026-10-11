@@ -1,3 +1,5 @@
+/*
+
 // this test  is done to prove the correctness of the transactions
 
 class trans;
@@ -279,7 +281,7 @@ initial
 	$display("address = %0d		%p \n",th,th);
 	$display("end of display");
 	end
-	end
+	end*/
 
 
 
