@@ -13,6 +13,11 @@ LOGS      := $(RESULTS)/logs
 WAVES     := $(RESULTS)/waves
 REPORTS   := $(RESULTS)/reports
 OBJ_DIR   := build/obj_dir
+UVM_HOME ?= ../../third_party/uvm
+UVM_SRC  := $(UVM_HOME)/src
+
+UVM_PKG  := $(UVM_SRC)/uvm_pkg.sv
+
 
 # Source directories relative to AXI_VIP/sim
 IF_DIR      := ../AXI_IF
@@ -42,6 +47,10 @@ VFLAGS := --binary --timing --trace \
           -I$(TB_DIR) \
           -I$(MASTER_DIR) \
           -I$(SLAVE_DIR)
+VFLAGS += +incdir+$(UVM_SRC)
+VFLAGS += +incdir+$(TB_DIR)
+VFLAGS += +incdir+$(MASTER_DIR)
+VFLAGS += +incdir+$(SLAVE_DIR)
 
 SIM_EXE := $(OBJ_DIR)/V$(TOP)
 
