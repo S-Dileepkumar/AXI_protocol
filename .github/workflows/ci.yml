@@ -35,16 +35,16 @@ jobs:
           make --version
 
       - name: Clean previous results
-        run: make -C AXI_VIP/sim clean
+        run: make -f Vmakefile.mk -C AXI_VIP/sim clean
 
       - name: Validate project
-        run: make -C AXI_VIP/sim check
+        run: make -f Vmakefile.mk -C AXI_VIP/sim check
 
       - name: Run lint
-        run: make -C AXI_VIP/sim lint
+        run: make -f Vmakefile.mk -C AXI_VIP/sim lint
 
       - name: Build and simulate
-        run: make -C AXI_VIP/sim run
+        run: make -f Vmakefile.mk -C AXI_VIP/sim run
 
       - name: Commit logs and waveforms
         if: ${{ always() && github.event_name == 'push' }}
