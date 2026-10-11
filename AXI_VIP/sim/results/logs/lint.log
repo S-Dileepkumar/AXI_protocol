@@ -1,5 +1,44 @@
-%Error: ../AXI_TB/../trans_test/AXI_TRANS.sv:288:1: syntax error, unexpected endmodule
-  288 | endmodule
-      | ^~~~~~~~~
+%Warning-MISINDENT: ../AXI_TB/../AXI_MASTER/master_driver.sv:262:3: Misleading indentation
+  262 |   @(vif.m_drv_cb); 
+      |   ^
+                    ../AXI_TB/../AXI_MASTER/master_driver.sv:259:2: ... Expected indentation matching this earlier statement's line:
+  259 |  if(i == 0 )
+      |  ^~
+                    ... For warning description see https://verilator.org/warn/MISINDENT?v=5.052
+                    ... Use "/* verilator lint_off MISINDENT */" and lint_on around source to disable this message.
+%Warning-MISINDENT: ../AXI_TB/../AXI_SLAVE/slave_driver.sv:198:3: Misleading indentation
+  198 |   @(vif.s_drv_cb);
+      |   ^
+                    ../AXI_TB/../AXI_SLAVE/slave_driver.sv:195:2: ... Expected indentation matching this earlier statement's line:
+  195 |  if(i == 0 )
+      |  ^~
+%Warning-MISINDENT: ../AXI_MASTER/master_driver.sv:262:3: Misleading indentation
+  262 |   @(vif.m_drv_cb); 
+      |   ^
+                    ../AXI_TB/../AXI_TB/axi_package.sv:17:1: ... note: In file included from 'axi_package.sv'
+                    ../AXI_MASTER/master_driver.sv:259:2: ... Expected indentation matching this earlier statement's line:
+  259 |  if(i == 0 )
+      |  ^~
+%Warning-MISINDENT: ../AXI_SLAVE/slave_driver.sv:198:3: Misleading indentation
+  198 |   @(vif.s_drv_cb);
+      |   ^
+                    ../AXI_TB/../AXI_TB/axi_package.sv:28:1: ... note: In file included from 'axi_package.sv'
+                    ../AXI_SLAVE/slave_driver.sv:195:2: ... Expected indentation matching this earlier statement's line:
+  195 |  if(i == 0 )
+      |  ^~
+%Error: ../AXI_TB/axi_test.sv:96:59: Can't find definition of variable: 'SEQ_ARB_STRICT_FIFO'
+                                   : ... Suggested alternative: 'UVM_SEQ_ARB_STRICT_FIFO'
+   96 |     envh.master_top.master_agent[0].seqrh.set_arbitration(SEQ_ARB_STRICT_FIFO);
+      |                                                           ^~~~~~~~~~~~~~~~~~~
+        ../AXI_TB/../AXI_TB/axi_package.sv:37:1: ... note: In file included from 'axi_package.sv'
         ... See the manual at https://verilator.org/verilator_doc.html?v=5.052 for more assistance.
-%Error: Exiting due to 1 error(s)
+%Error: ../AXI_TB/../AXI_MASTER/axi_master_agent.sv:1:32: Class for 'extends' not found: 'uvm_agent'
+    1 | class axi_master_agent extends uvm_agent;
+      |                                ^~~~~~~~~
+%Error: ../AXI_TB/../AXI_MASTER/axi_master_agent.sv:3:12: Can't find typedef/interface: 'uvm_component_registry'
+    3 |    typedef uvm_component_registry #(axi_master_agent,"axi_master_agent") type_id; 
+      |            ^~~~~~~~~~~~~~~~~~~~~~
+%Error: Internal Error: ../AXI_TB/../AXI_MASTER/axi_master_agent.sv:3:37: ../V3LinkDot.cpp:3916: Pin not under instance?
+    3 |    typedef uvm_component_registry #(axi_master_agent,"axi_master_agent") type_id; 
+      |                                     ^~~~~~~~~~~~~~~~
+                        ... This fatal error may be caused by the earlier error(s); resolve those first.
