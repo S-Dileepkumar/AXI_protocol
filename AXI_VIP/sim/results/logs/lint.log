@@ -1,9 +1,5 @@
-%Error: ../AXI_TB/../trans_test/AXI_TRANS.sv:278:22: syntax error, unexpected with-then-{
-  278 |  assert(th.randomize with{AWBURST == 2;});
-      |                      ^~~~
+%Error: ../AXI_TB/../trans_test/AXI_TRANS.sv:288:1: syntax error, unexpected endmodule
+  288 | endmodule
+      | ^~~~~~~~~
         ... See the manual at https://verilator.org/verilator_doc.html?v=5.052 for more assistance.
-%Error: ../AXI_TB/../trans_test/test.sv:14:2: syntax error, unexpected while
-   14 |  while(array.size == 1)
-      |  ^~~~~
-%Error: Cannot continue
-        ... This fatal error may be caused by the earlier error(s); resolve those first.
+%Error: Exiting due to 1 error(s)
