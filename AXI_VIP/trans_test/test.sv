@@ -1,4 +1,4 @@
-module top();
+/*module top();
 
 int array[1:100];
 
@@ -15,4 +15,4 @@ initial begin
 	begin
 		
 	end
-endmodule
+endmodule*/
