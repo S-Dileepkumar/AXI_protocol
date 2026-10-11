@@ -1,0 +1,71 @@
+
+name: AXI VIP Verilator CI
+
+on:
+  push:
+    branches: [main, master, develop]
+    paths-ignore:
+      - "AXI_VIP/sim/results/**"
+  pull_request:
+    branches: [main, master, develop]
+    paths-ignore:
+      - "AXI_VIP/sim/results/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  axi-verilator:
+    name: AXI VIP Build and Simulation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y verilator make g++
+
+      - name: Show tool versions
+        run: |
+          verilator --version
+          make --version
+
+      - name: Clean previous results
+        run: make -C AXI_VIP/sim clean
+
+      - name: Validate project
+        run: make -C AXI_VIP/sim check
+
+      - name: Run lint
+        run: make -C AXI_VIP/sim lint
+
+      - name: Build and simulate
+        run: make -C AXI_VIP/sim run
+
+      - name: Commit logs and waveforms
+        if: ${{ always() && github.event_name == 'push' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -e
+
+          git config user.name "github-actions[bot]"
+          git config user.email \
+            "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add -f AXI_VIP/sim/results/
+
+          if git diff --cached --quiet; then
+            echo "No result changes to commit."
+            exit 0
+          fi
+
+          git commit -m "ci: update AXI VIP simulation results"
+
+          git push \
+            "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" \
+            "HEAD:${GITHUB_REF_NAME}"
