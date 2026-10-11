@@ -6,10 +6,12 @@ on:
     branches: [main, master, develop]
     paths-ignore:
       - "AXI_VIP/sim/results/**"
+
   pull_request:
     branches: [main, master, develop]
     paths-ignore:
       - "AXI_VIP/sim/results/**"
+
   workflow_dispatch:
 
 permissions:
@@ -27,31 +29,43 @@ jobs:
       - name: Install tools
         run: |
           sudo apt-get update
-          sudo apt-get install -y verilator make g++
+          sudo apt-get install -y verilator make g++ git
 
       - name: Show tool versions
         run: |
           verilator --version
           make --version
+          g++ --version
 
-      - name: Clean previous results
-        run: make -f Vmakefile.mk -C AXI_VIP/sim clean
+      - name: Download Verilator-compatible UVM
+        run: |
+          git clone --depth 1 \
+            https://github.com/verilator/uvm.git \
+            "$RUNNER_TEMP/uvm"
+
+          test -f "$RUNNER_TEMP/uvm/src/uvm_pkg.sv"
 
       - name: Validate project
-        run: make -f Vmakefile.mk -C AXI_VIP/sim check
+        run: |
+          make -f Vmakefile.mk -C AXI_VIP/sim check \
+            UVM_HOME="$RUNNER_TEMP/uvm"
 
       - name: Run lint
-        run: make -f Vmakefile.mk -C AXI_VIP/sim lint
+        run: |
+          make -f Vmakefile.mk -C AXI_VIP/sim lint \
+            UVM_HOME="$RUNNER_TEMP/uvm"
 
       - name: Build and simulate
-        run: make -f Vmakefile.mk -C AXI_VIP/sim run
+        run: |
+          make -f Vmakefile.mk -C AXI_VIP/sim run \
+            UVM_HOME="$RUNNER_TEMP/uvm"
 
       - name: Commit logs and waveforms
         if: ${{ always() && github.event_name == 'push' }}
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          set -e
+          set -euo pipefail
 
           git config user.name "github-actions[bot]"
           git config user.email \
