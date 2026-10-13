@@ -1,4 +1,3 @@
-
 # ============================================================
 # AXI VIP - Verilator Makefile
 # Results: AXI_VIP/sim/results/
@@ -30,39 +29,31 @@ TB_DIR     := ../AXI_TB
 TOP_DIR    := ../AXI_TOP
 TEST_DIR   := ../trans_test
 
-# Discover design and testbench sources.
-IF_SRCS := $(sort $(wildcard $(IF_DIR)/*.sv $(IF_DIR)/*.v))
+# Only compile files that are NOT already `include`d by axi_package.sv.
+# Master/Slave agent files, drivers, monitors, sequences, configs, etc.
+# are pulled in via `include` inside the package (which has import uvm_pkg::*;).
+IF_SRCS   := $(sort $(wildcard $(IF_DIR)/*.sv $(IF_DIR)/*.v))
+PKG_SRCS  := $(wildcard $(TB_DIR)/axi_package.sv)
+TEST_SRCS := $(sort $(wildcard $(TEST_DIR)/*.sv $(TEST_DIR)/*.v))
+TOP_SRCS  := $(sort $(wildcard $(TOP_DIR)/*.sv $(TOP_DIR)/*.v))
 
-MASTER_SRCS := $(sort $(wildcard \
-	$(MASTER_DIR)/*.sv $(MASTER_DIR)/*.v))
-
-SLAVE_SRCS := $(sort $(wildcard \
-	$(SLAVE_DIR)/*.sv $(SLAVE_DIR)/*.v))
-
-PKG_SRCS := $(wildcard $(TB_DIR)/axi_package.sv)
-
-TEST_SRCS := $(sort $(wildcard \
-	$(TEST_DIR)/*.sv $(TEST_DIR)/*.v))
-
-TOP_SRCS := $(sort $(wildcard \
-	$(TOP_DIR)/*.sv $(TOP_DIR)/*.v))
-
-# Preserve the project's current source grouping.
 SRCS := $(IF_SRCS) \
-	$(MASTER_SRCS) \
-	$(SLAVE_SRCS) \
 	$(PKG_SRCS) \
 	$(TEST_SRCS) \
 	$(TOP_SRCS)
 
-# Include directories.
+# Include directories (required so `include "foo.sv"` inside the package works).
 INCLUDES := -I$(UVM_SRC) \
 	-I$(TB_DIR) \
 	-I$(MASTER_DIR) \
-	-I$(SLAVE_DIR)
+	-I$(SLAVE_DIR) \
+	-I$(IF_DIR)
 
 # Common Verilator options.
-COMMON_FLAGS := --timing -Wno-fatal -Wno-MISINDENT $(INCLUDES)
+# +define+UVM_NO_DPI is commonly needed for Accellera/chipsalliance UVM with Verilator.
+COMMON_FLAGS := --timing -Wno-fatal -Wno-MISINDENT \
+	+define+UVM_NO_DPI \
+	$(INCLUDES)
 
 BUILD_FLAGS := --binary --trace \
 	--top-module $(TOP) \
