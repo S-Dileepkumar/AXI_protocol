@@ -62,7 +62,7 @@ INCLUDES := -I$(UVM_SRC) \
 	-I$(SLAVE_DIR)
 
 # Common Verilator options.
-COMMON_FLAGS := --timing -Wno-fatal $(INCLUDES)
+COMMON_FLAGS := --timing -Wno-fatal -Wno-MISINDENT $(INCLUDES)
 
 BUILD_FLAGS := --binary --trace \
 	--top-module $(TOP) \
