@@ -1,11 +1,471 @@
-%Error: ../AXI_TB/../AXI_MASTER/axi_master_agent.sv:1:32: Class for 'extends' not found: 'uvm_agent'
-    1 | class axi_master_agent extends uvm_agent;
-      |                                ^~~~~~~~~
-        ... See the manual at https://verilator.org/verilator_doc.html?v=5.052 for more assistance.
-%Error: ../AXI_TB/../AXI_MASTER/axi_master_agent.sv:3:12: Can't find typedef/interface: 'uvm_component_registry'
-    3 |    typedef uvm_component_registry #(axi_master_agent,"axi_master_agent") type_id; 
-      |            ^~~~~~~~~~~~~~~~~~~~~~
-%Error: Internal Error: ../AXI_TB/../AXI_MASTER/axi_master_agent.sv:3:37: ../V3LinkDot.cpp:3916: Pin not under instance?
-    3 |    typedef uvm_component_registry #(axi_master_agent,"axi_master_agent") type_id; 
-      |                                     ^~~~~~~~~~~~~~~~
-                        ... This fatal error may be caused by the earlier error(s); resolve those first.
+%Warning-WIDTHTRUNC: ../AXI_TB/../AXI_IF/axi_if.sv:141:117: Logical operator LOGAND expects 1 bit on the RHS, but RHS's VARREF 'AWADDR' generates 32 bits.
+                                                          : ... note: In instance 'top'
+  141 |         @(posedge clk) $rose(AWVALID) |-> $stable(AWID) && $stable (AWLEN) && $stable (AWBURST) && $stable (AWSIZE) && (AWADDR) until AWREADY[->1];
+      |                                                                                                                     ^~
+                     ... For warning description see https://verilator.org/warn/WIDTHTRUNC?v=5.052
+                     ... Use "/* verilator lint_off WIDTHTRUNC */" and lint_on around source to disable this message.
+%Warning-WIDTHTRUNC: ../AXI_TB/../AXI_IF/axi_if.sv:150:114: Logical operator LOGAND expects 1 bit on the RHS, but RHS's VARREF 'ARADDR' generates 32 bits.
+                                                          : ... note: In instance 'top'
+  150 |      @(posedge clk) $rose(ARVALID) |-> $stable(ARID) && $stable (ARLEN) && $stable (ARBURST) && $stable (ARSIZE) && (ARADDR) until ARREADY[->1];
+      |                                                                                                                  ^~
+%Warning-WIDTHTRUNC: ../AXI_TB/../AXI_IF/axi_if.sv:168:91: Logical operator LOGAND expects 1 bit on the RHS, but RHS's VARREF 'RRESP' generates 2 bits.
+                                                         : ... note: In instance 'top'
+  168 |      @(posedge clk) $rose(RVALID) |-> $stable(RID) && $stable (RDATA) && $stable (RLAST)  && (RRESP) until RREADY[->1];
+      |                                                                                           ^~
+%Warning-WIDTHEXPAND: ../AXI_TB/../AXI_IF/axi_if.sv:257:78: Operator EQ expects 32 or 5 bits on the LHS, but LHS's VARREF 'AWLEN' generates 4 bits.
+                                                          : ... note: In instance 'top'
+  257 |    @(posedge clk) (AWBURST==2)|-> ((AWLEN==2)||(AWLEN==4)||(AWLEN==8)||(AWLEN==16));
+      |                                                                              ^~
+                      ... For warning description see https://verilator.org/warn/WIDTHEXPAND?v=5.052
+                      ... Use "/* verilator lint_off WIDTHEXPAND */" and lint_on around source to disable this message.
+%Warning-WIDTHEXPAND: ../AXI_TB/../AXI_IF/axi_if.sv:261:77: Operator EQ expects 32 or 5 bits on the LHS, but LHS's VARREF 'ARLEN' generates 4 bits.
+                                                          : ... note: In instance 'top'
+  261 |   @(posedge clk) (ARBURST==2)|-> ((ARLEN==2)||(ARLEN==4)||(ARLEN==8)||(ARLEN==16));
+      |                                                                             ^~
+%Warning-WIDTHEXPAND: ../AXI_TB/axi_trans.sv:53:36: Operator ADD expects 32 bits on the LHS, but LHS's VARREF 'AWLEN' generates 4 bits.
+                                                  : ... note: In instance 'top'
+   53 | constraint c4{ (WDATA.size == AWLEN+1); (WSTRB.size == AWLEN+1);}
+      |                                    ^
+                      ../AXI_TB/../AXI_TB/axi_package.sv:14:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_TB/axi_trans.sv:53:61: Operator ADD expects 32 bits on the LHS, but LHS's VARREF 'AWLEN' generates 4 bits.
+                                                  : ... note: In instance 'top'
+   53 | constraint c4{ (WDATA.size == AWLEN+1); (WSTRB.size == AWLEN+1);}
+      |                                                             ^
+                      ../AXI_TB/../AXI_TB/axi_package.sv:14:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHTRUNC: ../AXI_TB/axi_trans.sv:63:27: Logical operator LOGOR expects 1 bit on the LHS, but LHS's VARREF 'AWBURST' generates 2 bits.
+                                                 : ... note: In instance 'top'
+   63 | constraint c9{if((AWBURST || ARBURST) == (0 || 2))
+      |                           ^~
+                     ../AXI_TB/../AXI_TB/axi_package.sv:14:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHTRUNC: ../AXI_TB/axi_trans.sv:63:27: Logical operator LOGOR expects 1 bit on the RHS, but RHS's VARREF 'ARBURST' generates 2 bits.
+                                                 : ... note: In instance 'top'
+   63 | constraint c9{if((AWBURST || ARBURST) == (0 || 2))
+      |                           ^~
+                     ../AXI_TB/../AXI_TB/axi_package.sv:14:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHTRUNC: ../AXI_TB/axi_trans.sv:63:45: Logical operator LOGOR expects 1 bit on the RHS, but RHS's CONST '?32?sh2' generates 32 or 2 bits.
+                                                 : ... note: In instance 'top'
+   63 | constraint c9{if((AWBURST || ARBURST) == (0 || 2))
+      |                                             ^~
+                     ../AXI_TB/../AXI_TB/axi_package.sv:14:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_TB/axi_trans.sv:68:41: Operator INSIDE expects 32 or 5 bits on the Inside expression, but Inside expression's VARREF 'AWLEN' generates 4 bits.
+                                                  : ... note: In instance 'top'
+   68 | constraint c10{(AWBURST == 2) -> (AWLEN inside{2,4,8,16});}
+      |                                         ^~~~~~
+                      ../AXI_TB/../AXI_TB/axi_package.sv:14:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_TB/axi_trans.sv:102:11: Operator METHODCALL 'print_field' expects 4096 bits on the Function Argument, but Function Argument's VARREF 'AWID' generates 4 bits.
+                                                   : ... note: In instance 'top'
+  102 |   printer.print_field("AWID",    this.AWID ,4,UVM_DEC);
+      |           ^~~~~~~~~~~
+                      ../AXI_TB/../AXI_TB/axi_package.sv:14:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_TB/axi_trans.sv:103:11: Operator METHODCALL 'print_field' expects 4096 bits on the Function Argument, but Function Argument's VARREF 'AWADDR' generates 32 bits.
+                                                   : ... note: In instance 'top'
+  103 |   printer.print_field("AWADDR",  this.AWADDR,32,UVM_DEC);
+      |           ^~~~~~~~~~~
+                      ../AXI_TB/../AXI_TB/axi_package.sv:14:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_TB/axi_trans.sv:104:11: Operator METHODCALL 'print_field' expects 4096 bits on the Function Argument, but Function Argument's VARREF 'AWLEN' generates 4 bits.
+                                                   : ... note: In instance 'top'
+  104 |   printer.print_field("AWLEN",   this.AWLEN,4,UVM_DEC);
+      |           ^~~~~~~~~~~
+                      ../AXI_TB/../AXI_TB/axi_package.sv:14:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_TB/axi_trans.sv:105:11: Operator METHODCALL 'print_field' expects 4096 bits on the Function Argument, but Function Argument's VARREF 'AWSIZE' generates 3 bits.
+                                                   : ... note: In instance 'top'
+  105 |   printer.print_field("AWSIZE",  this.AWSIZE,3,UVM_DEC);
+      |           ^~~~~~~~~~~
+                      ../AXI_TB/../AXI_TB/axi_package.sv:14:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_TB/axi_trans.sv:106:11: Operator METHODCALL 'print_field' expects 4096 bits on the Function Argument, but Function Argument's VARREF 'AWBURST' generates 2 bits.
+                                                   : ... note: In instance 'top'
+  106 |   printer.print_field("AWBURST", this.AWBURST,2,UVM_DEC);
+      |           ^~~~~~~~~~~
+                      ../AXI_TB/../AXI_TB/axi_package.sv:14:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_TB/axi_trans.sv:107:11: Operator METHODCALL 'print_field' expects 4096 bits on the Function Argument, but Function Argument's VARREF 'AWVALID' generates 1 bits.
+                                                   : ... note: In instance 'top'
+  107 |   printer.print_field("AWVALID", this.AWVALID,1,UVM_DEC);
+      |           ^~~~~~~~~~~
+                      ../AXI_TB/../AXI_TB/axi_package.sv:14:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_TB/axi_trans.sv:108:11: Operator METHODCALL 'print_field' expects 4096 bits on the Function Argument, but Function Argument's VARREF 'AWREADY' generates 1 bits.
+                                                   : ... note: In instance 'top'
+  108 |   printer.print_field("AWREADY", this.AWREADY,1,UVM_DEC);
+      |           ^~~~~~~~~~~
+                      ../AXI_TB/../AXI_TB/axi_package.sv:14:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_TB/axi_trans.sv:109:11: Operator METHODCALL 'print_field' expects 4096 bits on the Function Argument, but Function Argument's VARREF 'WID' generates 4 bits.
+                                                   : ... note: In instance 'top'
+  109 |   printer.print_field("WID ",    this.WID,4,UVM_DEC);
+      |           ^~~~~~~~~~~
+                      ../AXI_TB/../AXI_TB/axi_package.sv:14:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_TB/axi_trans.sv:112:11: Operator METHODCALL 'print_field' expects 4096 bits on the Function Argument, but Function Argument's CMETHODHARD 'at' generates 32 bits.
+                                                   : ... note: In instance 'top'
+  112 |   printer.print_field($sformatf("WDATA[%0d]",i),   this.WDATA[i],32,UVM_BIN);
+      |           ^~~~~~~~~~~
+                      ../AXI_TB/../AXI_TB/axi_package.sv:14:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_TB/axi_trans.sv:115:11: Operator METHODCALL 'print_field' expects 4096 bits on the Function Argument, but Function Argument's CMETHODHARD 'at' generates 4 bits.
+                                                   : ... note: In instance 'top'
+  115 |   printer.print_field($sformatf("WSTRB[%0d]",i),   this.WSTRB[i],4,UVM_BIN);
+      |           ^~~~~~~~~~~
+                      ../AXI_TB/../AXI_TB/axi_package.sv:14:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_TB/axi_trans.sv:117:11: Operator METHODCALL 'print_field' expects 4096 bits on the Function Argument, but Function Argument's VARREF 'WLAST' generates 1 bits.
+                                                   : ... note: In instance 'top'
+  117 |   printer.print_field("WLAST",   this.WLAST,1,UVM_DEC);
+      |           ^~~~~~~~~~~
+                      ../AXI_TB/../AXI_TB/axi_package.sv:14:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_TB/axi_trans.sv:118:11: Operator METHODCALL 'print_field' expects 4096 bits on the Function Argument, but Function Argument's VARREF 'WVALID' generates 1 bits.
+                                                   : ... note: In instance 'top'
+  118 |   printer.print_field("WVALID",  this.WVALID,1,UVM_DEC);
+      |           ^~~~~~~~~~~
+                      ../AXI_TB/../AXI_TB/axi_package.sv:14:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_TB/axi_trans.sv:119:11: Operator METHODCALL 'print_field' expects 4096 bits on the Function Argument, but Function Argument's VARREF 'WREADY' generates 1 bits.
+                                                   : ... note: In instance 'top'
+  119 |   printer.print_field("WREADY",  this.WREADY,1,UVM_DEC);
+      |           ^~~~~~~~~~~
+                      ../AXI_TB/../AXI_TB/axi_package.sv:14:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_TB/axi_trans.sv:120:11: Operator METHODCALL 'print_field' expects 4096 bits on the Function Argument, but Function Argument's VARREF 'BID' generates 4 bits.
+                                                   : ... note: In instance 'top'
+  120 |   printer.print_field("BID",     this.BID,4,UVM_DEC);
+      |           ^~~~~~~~~~~
+                      ../AXI_TB/../AXI_TB/axi_package.sv:14:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_TB/axi_trans.sv:121:11: Operator METHODCALL 'print_field' expects 4096 bits on the Function Argument, but Function Argument's VARREF 'BRESP' generates 2 bits.
+                                                   : ... note: In instance 'top'
+  121 |   printer.print_field("BRESP",   this.BRESP,2,UVM_DEC);
+      |           ^~~~~~~~~~~
+                      ../AXI_TB/../AXI_TB/axi_package.sv:14:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_TB/axi_trans.sv:122:11: Operator METHODCALL 'print_field' expects 4096 bits on the Function Argument, but Function Argument's VARREF 'BVALID' generates 1 bits.
+                                                   : ... note: In instance 'top'
+  122 |   printer.print_field("BVALID",  this.BVALID,1,UVM_DEC);
+      |           ^~~~~~~~~~~
+                      ../AXI_TB/../AXI_TB/axi_package.sv:14:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_TB/axi_trans.sv:123:11: Operator METHODCALL 'print_field' expects 4096 bits on the Function Argument, but Function Argument's VARREF 'BREADY' generates 1 bits.
+                                                   : ... note: In instance 'top'
+  123 |   printer.print_field("BREADY",  this.BREADY,1,UVM_DEC);
+      |           ^~~~~~~~~~~
+                      ../AXI_TB/../AXI_TB/axi_package.sv:14:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_TB/axi_trans.sv:126:10: Operator METHODCALL 'print_field' expects 4096 bits on the Function Argument, but Function Argument's VARREF 'ARID' generates 4 bits.
+                                                   : ... note: In instance 'top'
+  126 |  printer.print_field("ARID",    this.ARID ,4,UVM_DEC);
+      |          ^~~~~~~~~~~
+                      ../AXI_TB/../AXI_TB/axi_package.sv:14:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_TB/axi_trans.sv:127:11: Operator METHODCALL 'print_field' expects 4096 bits on the Function Argument, but Function Argument's VARREF 'ARADDR' generates 32 bits.
+                                                   : ... note: In instance 'top'
+  127 |   printer.print_field("ARADDR",  this.ARADDR,32,UVM_DEC);
+      |           ^~~~~~~~~~~
+                      ../AXI_TB/../AXI_TB/axi_package.sv:14:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_TB/axi_trans.sv:128:11: Operator METHODCALL 'print_field' expects 4096 bits on the Function Argument, but Function Argument's VARREF 'ARLEN' generates 4 bits.
+                                                   : ... note: In instance 'top'
+  128 |   printer.print_field("ARLEN",   this.ARLEN,4,UVM_DEC);
+      |           ^~~~~~~~~~~
+                      ../AXI_TB/../AXI_TB/axi_package.sv:14:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_TB/axi_trans.sv:129:11: Operator METHODCALL 'print_field' expects 4096 bits on the Function Argument, but Function Argument's VARREF 'ARSIZE' generates 3 bits.
+                                                   : ... note: In instance 'top'
+  129 |   printer.print_field("ARSIZE",  this.ARSIZE,3,UVM_DEC);
+      |           ^~~~~~~~~~~
+                      ../AXI_TB/../AXI_TB/axi_package.sv:14:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_TB/axi_trans.sv:130:11: Operator METHODCALL 'print_field' expects 4096 bits on the Function Argument, but Function Argument's VARREF 'ARBURST' generates 2 bits.
+                                                   : ... note: In instance 'top'
+  130 |   printer.print_field("ARBURST", this.ARBURST,2,UVM_DEC);
+      |           ^~~~~~~~~~~
+                      ../AXI_TB/../AXI_TB/axi_package.sv:14:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_TB/axi_trans.sv:131:11: Operator METHODCALL 'print_field' expects 4096 bits on the Function Argument, but Function Argument's VARREF 'ARVALID' generates 1 bits.
+                                                   : ... note: In instance 'top'
+  131 |   printer.print_field("ARVALID", this.ARVALID,1,UVM_DEC);
+      |           ^~~~~~~~~~~
+                      ../AXI_TB/../AXI_TB/axi_package.sv:14:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_TB/axi_trans.sv:132:11: Operator METHODCALL 'print_field' expects 4096 bits on the Function Argument, but Function Argument's VARREF 'ARREADY' generates 1 bits.
+                                                   : ... note: In instance 'top'
+  132 |   printer.print_field("ARREADY", this.ARREADY,1,UVM_DEC);
+      |           ^~~~~~~~~~~
+                      ../AXI_TB/../AXI_TB/axi_package.sv:14:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_TB/axi_trans.sv:133:11: Operator METHODCALL 'print_field' expects 4096 bits on the Function Argument, but Function Argument's VARREF 'RID' generates 4 bits.
+                                                   : ... note: In instance 'top'
+  133 |   printer.print_field("RID ",    this.RID,4,UVM_DEC);
+      |           ^~~~~~~~~~~
+                      ../AXI_TB/../AXI_TB/axi_package.sv:14:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_TB/axi_trans.sv:134:11: Operator METHODCALL 'print_field' expects 4096 bits on the Function Argument, but Function Argument's VARREF 'RRESP' generates 2 bits.
+                                                   : ... note: In instance 'top'
+  134 |   printer.print_field("RRESP ",    this.RRESP,2,UVM_DEC);
+      |           ^~~~~~~~~~~
+                      ../AXI_TB/../AXI_TB/axi_package.sv:14:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_TB/axi_trans.sv:138:11: Operator METHODCALL 'print_field' expects 4096 bits on the Function Argument, but Function Argument's CMETHODHARD 'at' generates 32 bits.
+                                                   : ... note: In instance 'top'
+  138 |   printer.print_field($sformatf("RDATA[%0d]",i),   this.RDATA[i],32,UVM_DEC);
+      |           ^~~~~~~~~~~
+                      ../AXI_TB/../AXI_TB/axi_package.sv:14:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_TB/axi_trans.sv:141:11: Operator METHODCALL 'print_field' expects 4096 bits on the Function Argument, but Function Argument's VARREF 'RLAST' generates 1 bits.
+                                                   : ... note: In instance 'top'
+  141 |   printer.print_field("RLAST",   this.RLAST,1,UVM_DEC);
+      |           ^~~~~~~~~~~
+                      ../AXI_TB/../AXI_TB/axi_package.sv:14:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_TB/axi_trans.sv:142:11: Operator METHODCALL 'print_field' expects 4096 bits on the Function Argument, but Function Argument's VARREF 'RVALID' generates 1 bits.
+                                                   : ... note: In instance 'top'
+  142 |   printer.print_field("RVALID",  this.RVALID,1,UVM_DEC);
+      |           ^~~~~~~~~~~
+                      ../AXI_TB/../AXI_TB/axi_package.sv:14:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_TB/axi_trans.sv:143:11: Operator METHODCALL 'print_field' expects 4096 bits on the Function Argument, but Function Argument's VARREF 'RREADY' generates 1 bits.
+                                                   : ... note: In instance 'top'
+  143 |   printer.print_field("RREADY",  this.RREADY,1,UVM_DEC);
+      |           ^~~~~~~~~~~
+                      ../AXI_TB/../AXI_TB/axi_package.sv:14:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_TB/axi_trans.sv:186:23: Operator ADD expects 32 bits on the LHS, but LHS's VARREF 'AWLEN' generates 4 bits.
+                                                   : ... note: In instance 'top'
+  186 |  wburst_length = AWLEN+1;
+      |                       ^
+                      ../AXI_TB/../AXI_TB/axi_package.sv:14:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_TB/axi_trans.sv:187:23: Operator ADD expects 32 bits on the LHS, but LHS's VARREF 'ARLEN' generates 4 bits.
+                                                   : ... note: In instance 'top'
+  187 |  rburst_length = ARLEN+1;
+      |                       ^
+                      ../AXI_TB/../AXI_TB/axi_package.sv:14:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_TB/axi_trans.sv:328:23: Operator ADD expects 32 bits on the LHS, but LHS's VARREF 'AWLEN' generates 4 bits.
+                                                   : ... note: In instance 'top'
+  328 |  wburst_length = AWLEN+1;
+      |                       ^
+                      ../AXI_TB/../AXI_TB/axi_package.sv:14:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_TB/axi_trans.sv:329:23: Operator ADD expects 32 bits on the LHS, but LHS's VARREF 'ARLEN' generates 4 bits.
+                                                   : ... note: In instance 'top'
+  329 |  rburst_length = ARLEN+1;
+      |                       ^
+                      ../AXI_TB/../AXI_TB/axi_package.sv:14:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_MASTER/master_driver.sv:180:9: Operator EQ expects 32 bits on the RHS, but RHS's MEMBERSEL 'AWLEN' generates 4 bits.
+                                                          : ... note: In instance 'top'
+  180 |    if(i == xtn2.AWLEN)
+      |         ^~
+                      ../AXI_TB/../AXI_TB/axi_package.sv:17:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_MASTER/master_monitor.sv:179:28: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's SEL generates 8 bits.
+                                                            : ... note: In instance 'top'
+  179 |    4'b0001 : xtn1.WDATA[i] = vif.m_mon_cb.WDATA[7:0];
+      |                            ^
+                      ../AXI_TB/../AXI_TB/axi_package.sv:18:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_MASTER/master_monitor.sv:181:28: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's SEL generates 16 bits.
+                                                            : ... note: In instance 'top'
+  181 |    4'b0011 : xtn1.WDATA[i] = vif.m_mon_cb.WDATA[15:0];
+      |                            ^
+                      ../AXI_TB/../AXI_TB/axi_package.sv:18:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_MASTER/master_monitor.sv:183:28: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's SEL generates 24 bits.
+                                                            : ... note: In instance 'top'
+  183 |    4'b0111 : xtn1.WDATA[i] = vif.m_mon_cb.WDATA[23:0];
+      |                            ^
+                      ../AXI_TB/../AXI_TB/axi_package.sv:18:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_MASTER/master_monitor.sv:187:28: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's SEL generates 8 bits.
+                                                            : ... note: In instance 'top'
+  187 |    4'b0010 : xtn1.WDATA[i] = vif.m_mon_cb.WDATA[15:8];
+      |                            ^
+                      ../AXI_TB/../AXI_TB/axi_package.sv:18:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_MASTER/master_monitor.sv:189:28: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's SEL generates 8 bits.
+                                                            : ... note: In instance 'top'
+  189 |    4'b0100 : xtn1.WDATA[i] = vif.m_mon_cb.WDATA[23:16];
+      |                            ^
+                      ../AXI_TB/../AXI_TB/axi_package.sv:18:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_MASTER/master_monitor.sv:191:28: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's SEL generates 8 bits.
+                                                            : ... note: In instance 'top'
+  191 |    4'b1000 : xtn1.WDATA[i] = vif.m_mon_cb.WDATA[31:24];
+      |                            ^
+                      ../AXI_TB/../AXI_TB/axi_package.sv:18:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_MASTER/master_monitor.sv:193:28: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's SEL generates 16 bits.
+                                                            : ... note: In instance 'top'
+  193 |    4'b1100 : xtn1.WDATA[i] = vif.m_mon_cb.WDATA[31:16];
+      |                            ^
+                      ../AXI_TB/../AXI_TB/axi_package.sv:18:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_MASTER/master_monitor.sv:195:28: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's SEL generates 16 bits.
+                                                            : ... note: In instance 'top'
+  195 |    4'b0110 : xtn1.WDATA[i] = vif.m_mon_cb.WDATA[23:8];
+      |                            ^
+                      ../AXI_TB/../AXI_TB/axi_package.sv:18:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_MASTER/master_monitor.sv:197:28: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's SEL generates 24 bits.
+                                                            : ... note: In instance 'top'
+  197 |    4'b1110 : xtn1.WDATA[i] = vif.m_mon_cb.WDATA[31:8];
+      |                            ^
+                      ../AXI_TB/../AXI_TB/axi_package.sv:18:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHTRUNC: ../AXI_MASTER/master_sequence.sv:29:3: Logical operator ASSERT expects 1 bit on the Property, but Property's METHODCALL 'randomize' generates 32 bits.
+                                                          : ... note: In instance 'top'
+   29 |   assert(req.randomize() with {AWBURST == 0; ARBURST == 0;});
+      |   ^~~~~~
+                     ../AXI_TB/../AXI_TB/axi_package.sv:20:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHTRUNC: ../AXI_MASTER/master_sequence.sv:53:3: Logical operator ASSERT expects 1 bit on the Property, but Property's METHODCALL 'randomize' generates 32 bits.
+                                                          : ... note: In instance 'top'
+   53 |   assert(req.randomize() with {AWBURST == 1; ARBURST == 1;});
+      |   ^~~~~~
+                     ../AXI_TB/../AXI_TB/axi_package.sv:20:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHTRUNC: ../AXI_MASTER/master_sequence.sv:77:3: Logical operator ASSERT expects 1 bit on the Property, but Property's METHODCALL 'randomize' generates 32 bits.
+                                                          : ... note: In instance 'top'
+   77 |   assert(req.randomize() with {AWBURST == 2; ARBURST == 2;});
+      |   ^~~~~~
+                     ../AXI_TB/../AXI_TB/axi_package.sv:20:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_SLAVE/slave_driver.sv:202:38: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's SEL generates 8 bits.
+                                                         : ... note: In instance 'top'
+  202 |    4'b0001 : array[xtn1.waddress[i]] = vif.s_drv_cb.WDATA[7:0];
+      |                                      ^
+                      ../AXI_TB/../AXI_TB/axi_package.sv:28:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_SLAVE/slave_driver.sv:204:38: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's SEL generates 16 bits.
+                                                         : ... note: In instance 'top'
+  204 |    4'b0011 : array[xtn1.waddress[i]] = vif.s_drv_cb.WDATA[15:0];
+      |                                      ^
+                      ../AXI_TB/../AXI_TB/axi_package.sv:28:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_SLAVE/slave_driver.sv:206:38: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's SEL generates 24 bits.
+                                                         : ... note: In instance 'top'
+  206 |    4'b0111 : array[xtn1.waddress[i]] = vif.s_drv_cb.WDATA[23:0];
+      |                                      ^
+                      ../AXI_TB/../AXI_TB/axi_package.sv:28:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_SLAVE/slave_driver.sv:210:38: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's SEL generates 8 bits.
+                                                         : ... note: In instance 'top'
+  210 |    4'b0010 : array[xtn1.waddress[i]] = vif.s_drv_cb.WDATA[15:8];
+      |                                      ^
+                      ../AXI_TB/../AXI_TB/axi_package.sv:28:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_SLAVE/slave_driver.sv:212:38: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's SEL generates 8 bits.
+                                                         : ... note: In instance 'top'
+  212 |    4'b0100 : array[xtn1.waddress[i]] = vif.s_drv_cb.WDATA[23:16];
+      |                                      ^
+                      ../AXI_TB/../AXI_TB/axi_package.sv:28:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_SLAVE/slave_driver.sv:214:38: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's SEL generates 8 bits.
+                                                         : ... note: In instance 'top'
+  214 |    4'b1000 : array[xtn1.waddress[i]] = vif.s_drv_cb.WDATA[31:24];
+      |                                      ^
+                      ../AXI_TB/../AXI_TB/axi_package.sv:28:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_SLAVE/slave_driver.sv:216:38: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's SEL generates 16 bits.
+                                                         : ... note: In instance 'top'
+  216 |    4'b1100 : array[xtn1.waddress[i]] = vif.s_drv_cb.WDATA[31:16];
+      |                                      ^
+                      ../AXI_TB/../AXI_TB/axi_package.sv:28:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_SLAVE/slave_driver.sv:218:38: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's SEL generates 16 bits.
+                                                         : ... note: In instance 'top'
+  218 |    4'b0110 : array[xtn1.waddress[i]] = vif.s_drv_cb.WDATA[23:8];
+      |                                      ^
+                      ../AXI_TB/../AXI_TB/axi_package.sv:28:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_SLAVE/slave_driver.sv:220:38: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's SEL generates 24 bits.
+                                                         : ... note: In instance 'top'
+  220 |    4'b1110 : array[xtn1.waddress[i]] = vif.s_drv_cb.WDATA[31:8];
+      |                                      ^
+                      ../AXI_TB/../AXI_TB/axi_package.sv:28:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_SLAVE/slave_driver.sv:309:28: Operator ADD expects 32 bits on the LHS, but LHS's MEMBERSEL 'ARLEN' generates 4 bits.
+                                                         : ... note: In instance 'top'
+  309 |  for(int i =0; i<xtn4.ARLEN+1; i++)
+      |                            ^
+                      ../AXI_TB/../AXI_TB/axi_package.sv:28:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_SLAVE/slave_driver.sv:319:9: Operator EQ expects 32 bits on the RHS, but RHS's MEMBERSEL 'ARLEN' generates 4 bits.
+                                                        : ... note: In instance 'top'
+  319 |    if(i == xtn4.ARLEN)
+      |         ^~
+                      ../AXI_TB/../AXI_TB/axi_package.sv:28:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHTRUNC: ../AXI_SLAVE/slave_driver.sv:329:22: Operator ASSIGNDLY expects 2 bits on the Assign RHS, but Assign RHS's CONST '?32?bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' generates 32 bits.
+                                                        : ... note: In instance 'top'
+  329 |  vif.s_drv_cb.RRESP  <= 'bx;
+      |                      ^~
+                     ../AXI_TB/../AXI_TB/axi_package.sv:28:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_SLAVE/slave_monitor.sv:173:28: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's SEL generates 8 bits.
+                                                          : ... note: In instance 'top'
+  173 |    4'b0001 : xtn1.WDATA[i] = vif.s_mon_cb.WDATA[7:0];
+      |                            ^
+                      ../AXI_TB/../AXI_TB/axi_package.sv:29:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_SLAVE/slave_monitor.sv:175:28: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's SEL generates 16 bits.
+                                                          : ... note: In instance 'top'
+  175 |    4'b0011 : xtn1.WDATA[i] = vif.s_mon_cb.WDATA[15:0];
+      |                            ^
+                      ../AXI_TB/../AXI_TB/axi_package.sv:29:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_SLAVE/slave_monitor.sv:177:28: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's SEL generates 24 bits.
+                                                          : ... note: In instance 'top'
+  177 |    4'b0111 : xtn1.WDATA[i] = vif.s_mon_cb.WDATA[23:0];
+      |                            ^
+                      ../AXI_TB/../AXI_TB/axi_package.sv:29:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_SLAVE/slave_monitor.sv:181:28: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's SEL generates 8 bits.
+                                                          : ... note: In instance 'top'
+  181 |    4'b0010 : xtn1.WDATA[i] = vif.s_mon_cb.WDATA[15:8];
+      |                            ^
+                      ../AXI_TB/../AXI_TB/axi_package.sv:29:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_SLAVE/slave_monitor.sv:183:28: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's SEL generates 8 bits.
+                                                          : ... note: In instance 'top'
+  183 |    4'b0100 : xtn1.WDATA[i] = vif.s_mon_cb.WDATA[23:16];
+      |                            ^
+                      ../AXI_TB/../AXI_TB/axi_package.sv:29:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_SLAVE/slave_monitor.sv:185:28: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's SEL generates 8 bits.
+                                                          : ... note: In instance 'top'
+  185 |    4'b1000 : xtn1.WDATA[i] = vif.s_mon_cb.WDATA[31:24];
+      |                            ^
+                      ../AXI_TB/../AXI_TB/axi_package.sv:29:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_SLAVE/slave_monitor.sv:187:28: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's SEL generates 16 bits.
+                                                          : ... note: In instance 'top'
+  187 |    4'b1100 : xtn1.WDATA[i] = vif.s_mon_cb.WDATA[31:16];
+      |                            ^
+                      ../AXI_TB/../AXI_TB/axi_package.sv:29:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_SLAVE/slave_monitor.sv:189:28: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's SEL generates 16 bits.
+                                                          : ... note: In instance 'top'
+  189 |    4'b0110 : xtn1.WDATA[i] = vif.s_mon_cb.WDATA[23:8];
+      |                            ^
+                      ../AXI_TB/../AXI_TB/axi_package.sv:29:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHEXPAND: ../AXI_SLAVE/slave_monitor.sv:191:28: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's SEL generates 24 bits.
+                                                          : ... note: In instance 'top'
+  191 |    4'b1110 : xtn1.WDATA[i] = vif.s_mon_cb.WDATA[31:8];
+      |                            ^
+                      ../AXI_TB/../AXI_TB/axi_package.sv:29:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHTRUNC: ../AXI_TB/axi_scoreboard.sv:121:18: Logical operator LOGOR expects 1 bit on the LHS, but LHS's MEMBERSEL 'AWADDR' generates 32 bits.
+                                                       : ... note: In instance 'top'
+  121 |   if(xtn1.AWADDR || xtn2.AWADDR) write_receive++;
+      |                  ^~
+                     ../AXI_TB/../AXI_TB/axi_package.sv:35:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHTRUNC: ../AXI_TB/axi_scoreboard.sv:121:18: Logical operator LOGOR expects 1 bit on the RHS, but RHS's MEMBERSEL 'AWADDR' generates 32 bits.
+                                                       : ... note: In instance 'top'
+  121 |   if(xtn1.AWADDR || xtn2.AWADDR) write_receive++;
+      |                  ^~
+                     ../AXI_TB/../AXI_TB/axi_package.sv:35:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHTRUNC: ../AXI_TB/axi_scoreboard.sv:123:18: Logical operator LOGOR expects 1 bit on the LHS, but LHS's MEMBERSEL 'ARADDR' generates 32 bits.
+                                                       : ... note: In instance 'top'
+  123 |   if(xtn1.ARADDR || xtn2.ARADDR) read_receive++;
+      |                  ^~
+                     ../AXI_TB/../AXI_TB/axi_package.sv:35:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHTRUNC: ../AXI_TB/axi_scoreboard.sv:123:18: Logical operator LOGOR expects 1 bit on the RHS, but RHS's MEMBERSEL 'ARADDR' generates 32 bits.
+                                                       : ... note: In instance 'top'
+  123 |   if(xtn1.ARADDR || xtn2.ARADDR) read_receive++;
+      |                  ^~
+                     ../AXI_TB/../AXI_TB/axi_package.sv:35:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHTRUNC: ../AXI_TB/axi_scoreboard.sv:128:20: Logical operator LOGAND expects 1 bit on the LHS, but LHS's MEMBERSEL 'AWADDR' generates 32 bits.
+                                                       : ... note: In instance 'top'
+  128 |     if(xtn1.AWADDR && xtn2.AWADDR)  
+      |                    ^~
+                     ../AXI_TB/../AXI_TB/axi_package.sv:35:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHTRUNC: ../AXI_TB/axi_scoreboard.sv:128:20: Logical operator LOGAND expects 1 bit on the RHS, but RHS's MEMBERSEL 'AWADDR' generates 32 bits.
+                                                       : ... note: In instance 'top'
+  128 |     if(xtn1.AWADDR && xtn2.AWADDR)  
+      |                    ^~
+                     ../AXI_TB/../AXI_TB/axi_package.sv:35:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHTRUNC: ../AXI_TB/axi_scoreboard.sv:131:20: Logical operator LOGAND expects 1 bit on the LHS, but LHS's MEMBERSEL 'ARADDR' generates 32 bits.
+                                                       : ... note: In instance 'top'
+  131 |     if(xtn1.ARADDR && xtn2.ARADDR) 
+      |                    ^~
+                     ../AXI_TB/../AXI_TB/axi_package.sv:35:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHTRUNC: ../AXI_TB/axi_scoreboard.sv:131:20: Logical operator LOGAND expects 1 bit on the RHS, but RHS's MEMBERSEL 'ARADDR' generates 32 bits.
+                                                       : ... note: In instance 'top'
+  131 |     if(xtn1.ARADDR && xtn2.ARADDR) 
+      |                    ^~
+                     ../AXI_TB/../AXI_TB/axi_package.sv:35:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHTRUNC: ../AXI_TB/axi_env.sv:27:5: Logical operator IF expects 1 bit on the If, but If's MEMBERSEL 'no_of_masters' generates 32 bits.
+                                              : ... note: In instance 'top'
+   27 |     if(cfg.no_of_masters)
+      |     ^~
+                     ../AXI_TB/../AXI_TB/axi_package.sv:36:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHTRUNC: ../AXI_TB/axi_env.sv:30:5: Logical operator IF expects 1 bit on the If, but If's MEMBERSEL 'no_of_slaves' generates 32 bits.
+                                              : ... note: In instance 'top'
+   30 |     if(cfg.no_of_slaves)
+      |     ^~
+                     ../AXI_TB/../AXI_TB/axi_package.sv:36:1: ... note: In file included from 'axi_package.sv'
+%Warning-WIDTHTRUNC: ../AXI_TB/axi_env.sv:33:5: Logical operator IF expects 1 bit on the If, but If's MEMBERSEL 'no_of_score_board' generates 32 bits.
+                                              : ... note: In instance 'top'
+   33 |     if(cfg.no_of_score_board)  
+      |     ^~
+                     ../AXI_TB/../AXI_TB/axi_package.sv:36:1: ... note: In file included from 'axi_package.sv'
+%Error-UNSUPPORTED: ../AXI_TB/../AXI_IF/axi_if.sv:141:129: Unsupported: 'until' in complex property expression
+                                                         : ... note: In instance 'top'
+  141 |         @(posedge clk) $rose(AWVALID) |-> $stable(AWID) && $stable (AWLEN) && $stable (AWBURST) && $stable (AWSIZE) && (AWADDR) until AWREADY[->1];
+      |                                                                                                                                 ^~~~~
+                    ... For error description see https://verilator.org/warn/UNSUPPORTED?v=5.052
+%Error-UNSUPPORTED: ../AXI_TB/../AXI_IF/axi_if.sv:145:109: Unsupported: 'until' in complex property expression
+                                                         : ... note: In instance 'top'
+  145 |        @(posedge clk) $rose(WVALID) |-> $stable(WID) && $stable(WDATA) && $stable (WSTRB) && $stable(WLAST) until WREADY[->1];
+      |                                                                                                             ^~~~~
+%Error-UNSUPPORTED: ../AXI_TB/../AXI_IF/axi_if.sv:150:126: Unsupported: 'until' in complex property expression
+                                                         : ... note: In instance 'top'
+  150 |      @(posedge clk) $rose(ARVALID) |-> $stable(ARID) && $stable (ARLEN) && $stable (ARBURST) && $stable (ARSIZE) && (ARADDR) until ARREADY[->1];
+      |                                                                                                                              ^~~~~
+%Error-UNSUPPORTED: ../AXI_TB/../AXI_IF/axi_if.sv:163:72: Unsupported: 'until' in complex property expression
+                                                        : ... note: In instance 'top'
+  163 |       @(posedge clk) $rose(BVALID) |-> $stable(BID) && $stable (BRESP) until BREADY[->1];
+      |                                                                        ^~~~~
+%Error-UNSUPPORTED: ../AXI_TB/../AXI_IF/axi_if.sv:168:102: Unsupported: 'until' in complex property expression
+                                                         : ... note: In instance 'top'
+  168 |      @(posedge clk) $rose(RVALID) |-> $stable(RID) && $stable (RDATA) && $stable (RLAST)  && (RRESP) until RREADY[->1];
+      |                                                                                                      ^~~~~
+%Error: Exiting due to 5 error(s)
