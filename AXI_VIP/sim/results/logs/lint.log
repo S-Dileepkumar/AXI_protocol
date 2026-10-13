@@ -1,31 +1,3 @@
-%Warning-MISINDENT: ../AXI_TB/../AXI_MASTER/master_driver.sv:262:3: Misleading indentation
-  262 |   @(vif.m_drv_cb); 
-      |   ^
-                    ../AXI_TB/../AXI_MASTER/master_driver.sv:259:2: ... Expected indentation matching this earlier statement's line:
-  259 |  if(i == 0 )
-      |  ^~
-                    ... For warning description see https://verilator.org/warn/MISINDENT?v=5.052
-                    ... Use "/* verilator lint_off MISINDENT */" and lint_on around source to disable this message.
-%Warning-MISINDENT: ../AXI_TB/../AXI_SLAVE/slave_driver.sv:198:3: Misleading indentation
-  198 |   @(vif.s_drv_cb);
-      |   ^
-                    ../AXI_TB/../AXI_SLAVE/slave_driver.sv:195:2: ... Expected indentation matching this earlier statement's line:
-  195 |  if(i == 0 )
-      |  ^~
-%Warning-MISINDENT: ../AXI_MASTER/master_driver.sv:262:3: Misleading indentation
-  262 |   @(vif.m_drv_cb); 
-      |   ^
-                    ../AXI_TB/../AXI_TB/axi_package.sv:17:1: ... note: In file included from 'axi_package.sv'
-                    ../AXI_MASTER/master_driver.sv:259:2: ... Expected indentation matching this earlier statement's line:
-  259 |  if(i == 0 )
-      |  ^~
-%Warning-MISINDENT: ../AXI_SLAVE/slave_driver.sv:198:3: Misleading indentation
-  198 |   @(vif.s_drv_cb);
-      |   ^
-                    ../AXI_TB/../AXI_TB/axi_package.sv:28:1: ... note: In file included from 'axi_package.sv'
-                    ../AXI_SLAVE/slave_driver.sv:195:2: ... Expected indentation matching this earlier statement's line:
-  195 |  if(i == 0 )
-      |  ^~
 %Error: ../AXI_TB/axi_test.sv:96:59: Can't find definition of variable: 'SEQ_ARB_STRICT_FIFO'
                                    : ... Suggested alternative: 'UVM_SEQ_ARB_STRICT_FIFO'
    96 |     envh.master_top.master_agent[0].seqrh.set_arbitration(SEQ_ARB_STRICT_FIFO);
