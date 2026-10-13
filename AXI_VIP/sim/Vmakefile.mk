@@ -51,7 +51,10 @@ INCLUDES := -I$(UVM_SRC) \
 
 # Common Verilator options.
 # +define+UVM_NO_DPI is commonly needed for Accellera/chipsalliance UVM with Verilator.
-COMMON_FLAGS := --timing -Wno-fatal -Wno-MISINDENT \
+COMMON_FLAGS := --timing -Wno-fatal \
+	-Wno-MISINDENT \
+	-Wno-WIDTHTRUNC \
+	-Wno-WIDTHEXPAND \
 	+define+UVM_NO_DPI \
 	$(INCLUDES)
 
