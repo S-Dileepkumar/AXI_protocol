@@ -1,0 +1,35 @@
+UVM_INFO /home/runner/work/_temp/uvm/src/base/uvm_root.svh(476) @ 0: reporter [UVM/RELNOTES] 
+  ***********       IMPORTANT RELEASE NOTES         ************
+
+  This implementation of the UVM Library deviates from the 1800.2-2020
+  standard.  See the DEVIATIONS.md file contained in the release
+  for more details.
+
+----------------------------------------------------------------
+Accellera:1800.2:UVM:2020.3.1
+
+All copyright owners for this kit are listed in NOTICE.txt
+All Rights Reserved Worldwide
+----------------------------------------------------------------
+
+      (Specify +UVM_NO_RELNOTES to turn off this notice)
+
+UVM_WARNING /home/runner/work/_temp/uvm/src/base/uvm_root.svh(549) @ 0: reporter [NO_DPI_USED] We are thinking of removing support for UVM_NO_DPI.  Please try this test without it and evaluate the impact
+UVM_FATAL @ 0: reporter [NOCOMP] No components instantiated. You must either instantiate at least one component before calling run_test or use run_test to do so. To run a test using run_test, use +UVM_TESTNAME or supply the test name in the argument to run_test(). Exiting simulation.
+UVM_INFO /home/runner/work/_temp/uvm/src/base/uvm_report_server.svh(1009) @ 0: reporter [UVM/REPORT/SERVER] 
+--- UVM Report Summary ---
+
+** Report counts by severity
+UVM_INFO :    1
+UVM_WARNING :    1
+UVM_ERROR :    0
+UVM_FATAL :    1
+** Report counts by id
+[NOCOMP]     1
+[NO_DPI_USED]     1
+[UVM/RELNOTES]     1
+
+- /home/runner/work/_temp/uvm/src/base/uvm_root.svh:183: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05
+- Verilator: $finish at 0s; walltime 0.002 s; speed 0.000 s/s
+- Verilator: cpu 0.002 s on 1 threads; allocated 16 MB
