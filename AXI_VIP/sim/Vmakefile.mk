@@ -77,7 +77,7 @@ help:
 	@echo "  make clean   - Remove build files and results"
 
 results:
-	mkdir -p $(LOGS) $(WAVES) $(REPORTS)
+	mkdir -p $(LOGS) $(WAVES) $(REPORTS) $(OBJ_DIR)
 
 check: results
 	@command -v $(VERILATOR) >/dev/null || \
@@ -98,6 +98,7 @@ lint: check
 	  2>&1 | tee $(LOGS)/lint.log
 
 build: check
+	@mkdir -p $(OBJ_DIR)
 	@set -o pipefail; \
 	  $(VERILATOR) $(COMMON_FLAGS) $(BUILD_FLAGS) \
 	  $(UVM_PKG) $(SRCS) \
