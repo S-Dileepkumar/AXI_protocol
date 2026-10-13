@@ -93,7 +93,7 @@ endclass
 	endfunction
 
   function void test1::start_of_simulation_phase(uvm_phase phase);
-    envh.master_top.master_agent[0].seqrh.set_arbitration(SEQ_ARB_STRICT_FIFO);
+	  envh.master_top.master_agent[0].seqrh.set_arbitration(UVM_SEQ_ARB_STRICT_FIFO);
   endfunction
 
 	task test1::run_phase(uvm_phase phase);
