@@ -137,7 +137,7 @@ modport M_MON_MP(clocking m_mon_cb);
 modport S_DRV_MP(clocking s_drv_cb);
 modport S_MON_MP(clocking s_mon_cb);
 
-		property AWVALID_;
+/*		property AWVALID_;
       		@(posedge clk) $rose(AWVALID) |-> $stable(AWID) && $stable (AWLEN) && $stable (AWBURST) && $stable (AWSIZE) && (AWADDR) until AWREADY[->1];
       	endproperty
       
@@ -166,7 +166,39 @@ modport S_MON_MP(clocking s_mon_cb);
       
    	property RVALID_;
    		@(posedge clk) $rose(RVALID) |-> $stable(RID) && $stable (RDATA) && $stable (RLAST)  && (RRESP) until RREADY[->1];
-   	endproperty
+   	endproperty */
+
+	// Replace lines ~140-169 with:
+
+property AWVALID_;
+  @(posedge clk) $rose(AWVALID) |-> 
+    ($stable(AWID) && $stable(AWLEN) && $stable(AWBURST) && $stable(AWSIZE) && $stable(AWADDR)) 
+    throughout AWREADY[->1];
+endproperty
+
+property VALID_;
+  @(posedge clk) $rose(WVALID) |-> 
+    ($stable(WID) && $stable(WDATA) && $stable(WSTRB) && $stable(WLAST)) 
+    throughout WREADY[->1];
+endproperty
+
+property ARVALID_;
+  @(posedge clk) $rose(ARVALID) |-> 
+    ($stable(ARID) && $stable(ARLEN) && $stable(ARBURST) && $stable(ARSIZE) && $stable(ARADDR)) 
+    throughout ARREADY[->1];
+endproperty
+
+property BVALID_;
+  @(posedge clk) $rose(BVALID) |-> 
+    ($stable(BID) && $stable(BRESP)) 
+    throughout BREADY[->1];
+endproperty
+
+property RVALID_;
+  @(posedge clk) $rose(RVALID) |-> 
+    ($stable(RID) && $stable(RDATA) && $stable(RLAST) && $stable(RRESP)) 
+    throughout RREADY[->1];
+endproperty
 
    	A_4: assert property (BVALID_);
    	A_5: assert property (RVALID_);
